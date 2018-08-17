@@ -1,0 +1,27 @@
+logging:
+  level: INFO
+  loggers:
+    com.tinhcao.dropwizard: DEBUG
+
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password: root
+  url: jdbc:mysql://localhost:3306/dwhibernate
+  maxWaitForConnection: 1s
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+  properties:
+    hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+    hibernate.show_sql: true
+    hibernate.generate_statistics: false
+    hibernate.hbm2ddl.auto: validate # validates schema when service is started
+server:
+  applicationConnectors:
+  - type: http
+    port: 8888
