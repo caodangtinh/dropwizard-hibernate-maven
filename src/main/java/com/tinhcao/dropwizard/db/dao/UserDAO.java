@@ -2,6 +2,7 @@ package com.tinhcao.dropwizard.db.dao;
 
 import com.tinhcao.dropwizard.db.entity.User;
 import io.dropwizard.hibernate.AbstractDAO;
+import io.dropwizard.hibernate.UnitOfWork;
 import org.hibernate.SessionFactory;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class UserDAO extends AbstractDAO<User> {
         super(sessionFactory);
     }
 
+    @UnitOfWork
     public Optional<User> getByUsernameAndPassword(String username, String password) {
         return Optional.ofNullable(uniqueResult(namedQuery(User.GET_BY_USER_NAME_AND_PASSOWRD)
                 .setParameter("username", username)

@@ -21,7 +21,7 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 public class DropwizardHibernateApplication extends Application<DropwizardHibernateConfiguration> {
 
     // hibernate bundle
-    private final HibernateBundle<DropwizardHibernateConfiguration> hibernate = new HibernateBundle<DropwizardHibernateConfiguration>(Person.class) {
+    private final HibernateBundle<DropwizardHibernateConfiguration> hibernate = new HibernateBundle<DropwizardHibernateConfiguration>(Person.class, User.class) {
         @Override
         public PooledDataSourceFactory getDataSourceFactory(DropwizardHibernateConfiguration configuration) {
             return configuration.getDataSourceFactory();
