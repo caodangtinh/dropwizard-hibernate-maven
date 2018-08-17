@@ -2,6 +2,8 @@ package com.tinhcao.dropwizard.resources;
 
 import com.tinhcao.dropwizard.db.dao.PersonDAO;
 import com.tinhcao.dropwizard.db.entity.Person;
+import com.tinhcao.dropwizard.db.entity.User;
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.validation.Valid;
@@ -47,14 +49,14 @@ public class PersonResource {
 
     @POST
     @UnitOfWork
-    public Response createPerson(@Valid Person person) {
+    public Response createPerson(@Auth User user, @Valid Person person) {
         return Response.status(Response.Status.CREATED).entity(personDAO.createPerson(person)).build();
     }
 
     @DELETE
     @Path("/{id}")
     @UnitOfWork
-    public Response delete(@PathParam(value = "id") long id) {
+    public Response delete(@Auth User user, @PathParam(value = "id") long id) {
         personDAO.delete(id);
         return Response.ok().build();
     }
@@ -62,7 +64,7 @@ public class PersonResource {
     @PUT
     @Path("/{id}")
     @UnitOfWork
-    public Response update(@PathParam(value = "id") long id, @Valid Person person) {
+    public Response update(@Auth User user, @PathParam(value = "id") long id, @Valid Person person) {
         person.setId(id);
         personDAO.update(person);
         return Response.ok().build();
