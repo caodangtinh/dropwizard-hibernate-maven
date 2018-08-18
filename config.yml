@@ -21,6 +21,7 @@ database:
     hibernate.show_sql: true
     hibernate.generate_statistics: false
     hibernate.hbm2ddl.auto: validate # validates schema when service is started
+    hibernate.current_session_context_class: thread
 server:
   applicationConnectors:
   - type: http

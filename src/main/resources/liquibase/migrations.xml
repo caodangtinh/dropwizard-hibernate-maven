@@ -16,6 +16,7 @@
         </createTable>
         <comment>Create person table</comment>
     </changeSet>
+
     <changeSet id="2" author="tinhcao">
         <insert tableName="person">
             <column name="name" value="Axel"/>
@@ -50,4 +51,12 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="5" author="tinhcao">
+        <insert tableName="users">
+            <column name="username" value="tinhcao"/>
+            <column name="password" value="123"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>

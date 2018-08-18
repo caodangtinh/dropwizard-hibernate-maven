@@ -25,7 +25,7 @@ public class PersonResource {
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Response getListPerson() {
+    public Response getListPerson(@Auth User user) {
         List<Person> personList = personDAO.findAll();
         if (personList != null && personList.size() > 0) {
             return Response.ok().entity(personList).build();
@@ -38,7 +38,7 @@ public class PersonResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Response getPersonById(@PathParam(value = "id") long id) {
+    public Response getPersonById(@Auth User user, @PathParam(value = "id") long id) {
         Person person = personDAO.findById(id);
         if (person != null) {
             return Response.ok().entity(person).build();
